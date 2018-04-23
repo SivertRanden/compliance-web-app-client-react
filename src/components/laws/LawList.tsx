@@ -1,25 +1,15 @@
-import React, { Component } from "react";
-// const { ListGroup, ListGroupItem } = require("react-bootstrap");
-// import Law from "./Law";
+import React from "react";
+const { ListGroup, ListGroupItem } = require("react-bootstrap");
+import Law from "./Law";
 import axios from "axios";
 
-class LawList extends Component {
-  state = {
-    laws: []
-  };
-
-  public render() {
-    return (
-      <div className="lawlist">
-        {/* <ListGroup>
-          {this.state.laws.map(l => (
-            <ListGroupItem key={l.id}>
-              <Law key={l.id} title={l.title} />
-            </ListGroupItem>
-          ))}
-        </ListGroup> */}
-      </div>
-    );
+class LawList extends React.Component<{}, any> {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      laws: []
+    }
   }
 
   componentDidMount() {
@@ -36,11 +26,23 @@ class LawList extends Component {
         const newState = Object.assign({}, this.state, {
           laws: lawsFromServer
         });
-
         this.setState(newState);
-        console.log(lawsFromServer);
       })
       .catch(error => console.log(error));
+  }
+
+  render() {
+    return (
+      <div className="lawlist">
+        <ListGroup>
+          {this.state.laws.map(l => (
+            <ListGroupItem key={l.id}>
+              <Law law = {l}/>
+            </ListGroupItem>
+          ))}
+        </ListGroup>
+      </div>
+    );
   }
 }
 

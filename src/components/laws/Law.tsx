@@ -3,7 +3,7 @@ import React from "react";
 function Law(props: any) {
   return (
     <div className="law">
-      <span>{props.title}</span>
+      <span>{props.law.title}</span>
     </div>
   );
 }
