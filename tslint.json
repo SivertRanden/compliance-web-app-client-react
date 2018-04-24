@@ -8,7 +8,8 @@
     "member-access": false,
     "no-console": [false],
     "object-literal-sort-keys": false,
-    "no-var-requires": false
+    "no-var-requires": false,
+    "jsx-boolean-value": false
   },
   "defaultSeverity": "warning"
 }

@@ -1,30 +1,26 @@
 import React from "react";
 const { ListGroup, ListGroupItem } = require("react-bootstrap");
-import Law from "./Law";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-class LawList extends React.Component<{}, any> {
+class ThemeList extends React.Component<{}, any> {
   constructor(props) {
     super(props);
     this.state = {
-      laws: []
+      themes: []
     };
   }
 
   componentDidMount() {
     axios
-      .get("/laws")
+      .get("/themes")
       .then(response => {
-        const lawsFromServer = response.data.map(l => {
-          return {
-            id: l.id_law,
-            title: l.title,
-            dateCode: l.date_code
-          };
-        });
+        const dataFromServer = {
+          themes: response.data
+        };
+        console.log(dataFromServer);
         const newState = Object.assign({}, this.state, {
-          laws: lawsFromServer
+          themes: dataFromServer.themes
         });
         this.setState(newState);
       })
@@ -33,13 +29,11 @@ class LawList extends React.Component<{}, any> {
 
   render() {
     return (
-      <div className="lawlist">
+      <div className="themelist">
         <ListGroup>
-          {this.state.laws.map(l => (
-            <ListGroupItem key={l.id}>
-              <Link to={"/laws/" + l.id}>
-                <Law law={l} />
-              </Link>
+          {this.state.themes.map(t => (
+            <ListGroupItem key={t.id_theme}>
+              <Link to={"/themes/" + t.id_theme}>{t.title}</Link>
             </ListGroupItem>
           ))}
         </ListGroup>
@@ -48,4 +42,4 @@ class LawList extends React.Component<{}, any> {
   }
 }
 
-export default LawList;
+export default ThemeList;
