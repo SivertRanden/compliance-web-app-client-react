@@ -1,7 +1,13 @@
 import React from "react";
-const { ListGroup, ListGroupItem } = require("react-bootstrap");
+const { Table } = require("react-bootstrap");
 import axios from "axios";
 import { Link } from "react-router-dom";
+
+// const statuscodes = {
+//   green: "Godkjent og implementert i styringssystem",
+//   yellow: "Arbeid pågår",
+//   orange: "Må revideres"
+// };
 
 class ThemeList extends React.Component<{}, any> {
   constructor(props) {
@@ -18,7 +24,6 @@ class ThemeList extends React.Component<{}, any> {
         const dataFromServer = {
           themes: response.data
         };
-        console.log(dataFromServer);
         const newState = Object.assign({}, this.state, {
           themes: dataFromServer.themes
         });
@@ -30,15 +35,30 @@ class ThemeList extends React.Component<{}, any> {
   render() {
     return (
       <div className="themelist">
-        <ListGroup>
-          {this.state.themes.map(t => (
-            <ListGroupItem key={t.id_theme}>
-              <Link to={"/themes/" + t.id_theme}>
-                {t.id_theme}. {t.title}
-              </Link>
-            </ListGroupItem>
-          ))}
-        </ListGroup>
+        <Table bordered>
+          <thead>
+            <tr>
+              <th>Temanavn</th>
+              <th>Antall tilhørende dokumenter</th>
+              <th>
+                Status pr {this.state.themes[0] ? this.state.themes[0].last_status_check : ""}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.themes.map(t => (
+              <tr key={t.id_theme}>
+                <td>
+                  <Link to={"/themes/" + t.id_theme}>
+                    {t.id_theme}. {t.title}
+                  </Link>
+                </td>
+                <td>{t.nr_of_documents}</td>
+                <td>{t.theme_status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
     );
   }

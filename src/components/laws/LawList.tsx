@@ -15,8 +15,8 @@ class LawList extends React.Component<{}, any> {
   componentDidMount() {
     axios
       .get("/laws")
-      .then(response => {
-        const lawsFromServer = response.data.map(l => {
+      .then(res => {
+        const lawsFromServer = res.data.map(l => {
           return {
             id: l.id_law,
             title: l.title,
