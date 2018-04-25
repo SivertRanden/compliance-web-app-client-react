@@ -33,7 +33,9 @@ class ThemeList extends React.Component<{}, any> {
         <ListGroup>
           {this.state.themes.map(t => (
             <ListGroupItem key={t.id_theme}>
-              <Link to={"/themes/" + t.id_theme}>{t.title}</Link>
+              <Link to={"/themes/" + t.id_theme}>
+                {t.id_theme}. {t.title}
+              </Link>
             </ListGroupItem>
           ))}
         </ListGroup>
