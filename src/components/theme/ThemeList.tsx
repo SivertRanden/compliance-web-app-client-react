@@ -20,12 +20,18 @@ class ThemeList extends React.Component<{}, any> {
   componentDidMount() {
     axios
       .get("/themes")
-      .then(response => {
-        const dataFromServer = {
-          themes: response.data
-        };
+      .then(res => {
+        const themesFromServer = res.data.map(t => {
+          return {
+            id: t.id_theme,
+            title: t.title,
+            nrOfDocuments: t.nr_of_documents,
+            lastStatus: t.last_status_check,
+            status: t.theme_status
+          };
+        });
         const newState = Object.assign({}, this.state, {
-          themes: dataFromServer.themes
+          themes: themesFromServer
         });
         this.setState(newState);
       })
@@ -40,21 +46,19 @@ class ThemeList extends React.Component<{}, any> {
             <tr>
               <th>Temanavn</th>
               <th>Antall tilhørende dokumenter</th>
-              <th>
-                Status pr {this.state.themes[0] ? this.state.themes[0].last_status_check : ""}
-              </th>
+              <th>Status pr {this.state.themes[0] ? this.state.themes[0].lastStatus : ""}</th>
             </tr>
           </thead>
           <tbody>
             {this.state.themes.map(t => (
-              <tr key={t.id_theme}>
+              <tr key={t.id}>
                 <td>
-                  <Link to={"/themes/" + t.id_theme}>
-                    {t.id_theme}. {t.title}
+                  <Link to={"/themes/" + t.id}>
+                    {t.id}. {t.title}
                   </Link>
                 </td>
-                <td>{t.nr_of_documents}</td>
-                <td>{t.theme_status}</td>
+                <td>{t.nrOfDocuments}</td>
+                <td>{t.status}</td>
               </tr>
             ))}
           </tbody>
