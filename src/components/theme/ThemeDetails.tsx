@@ -65,9 +65,9 @@ class ThemeDetails extends React.Component<RouteComponentProps, any> {
         <h3>
           {this.state.theme.id}. {this.state.theme.title}
         </h3>
-        <PanelComponent title="Lover" itemArray={this.state.laws} value="title" />
-        <PanelComponent title="Forskrifter" itemArray={this.state.regulations} value="title" />
-        <PanelComponent title="Svar" itemArray={this.state.answers} value="title" />
+        <PanelComponent title="Lover" itemArray={this.state.laws} values={["title"]} />
+        <PanelComponent title="Forskrifter" itemArray={this.state.regulations} values={["title"]} />
+        <PanelComponent title="Svar" itemArray={this.state.answers} values={["title"]} />
       </div>
     );
   }

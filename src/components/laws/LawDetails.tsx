@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
-import { ListGroup, ListGroupItem, Panel } from "react-bootstrap";
-
+import PanelComponent from "../UI-components/PanelComponent";
 class LawDetails extends React.Component<RouteComponentProps, any> {
   constructor(props) {
     super(props);
@@ -17,16 +16,30 @@ class LawDetails extends React.Component<RouteComponentProps, any> {
     const id = this.props.match.params.lawId;
     axios
       .get("/laws/" + id)
-      .then(response => {
-        const dataFromServer = {
-          law: response.data[0],
-          regulations: response.data[1],
-          subSections: response.data[2]
+      .then(res => {
+        const lawFromServer = {
+          id: res.data[0].id_law,
+          title: res.data[0].title,
+          dateCode: res.data[0].date_code
         };
+        const regulationsFromServer = res.data[1].map(reg => {
+          return {
+            id: reg.id_regulation,
+            title: reg.title,
+            dateCode: reg.date_code
+          };
+        });
+        const subSectionsFromServer = res.data[2].map(sub => {
+          return {
+            id: sub.id_sub_section,
+            number: sub.number,
+            title: sub.title
+          };
+        });
         const newState = Object.assign({}, this.state, {
-          law: dataFromServer.law,
-          regulations: dataFromServer.regulations,
-          subSections: dataFromServer.subSections
+          law: lawFromServer,
+          regulations: regulationsFromServer,
+          subSections: subSectionsFromServer
         });
         this.setState(newState);
       })
@@ -37,36 +50,19 @@ class LawDetails extends React.Component<RouteComponentProps, any> {
     return (
       <div className="lawDetails">
         <h3>
-          {this.state.law.title} - {this.state.law.date_code}
+          {this.state.law.title} - {this.state.law.dateCode}
         </h3>
-        <Panel defaultExpanded>
-          <Panel.Heading>
-            <Panel.Title toggle componentClass="h3">
-              Forskrifter som er hjemlet i loven
-            </Panel.Title>
-          </Panel.Heading>
-          <Panel.Collapse>
-            <ListGroup>
-              {this.state.regulations.map(r => (
-                <ListGroupItem key={r.id_regulation}>{r.title}</ListGroupItem>
-              ))}
-            </ListGroup>
-          </Panel.Collapse>
-        </Panel>
-        <Panel defaultExpanded>
-          <Panel.Heading>
-            <Panel.Title toggle componentClass="h3">
-              Relevante paragrafer i loven
-            </Panel.Title>
-          </Panel.Heading>
-          <Panel.Collapse>
-            <ListGroup>
-              {this.state.subSections.map(s => (
-                <ListGroupItem key={s.id_sub_section}>{s.title}</ListGroupItem>
-              ))}
-            </ListGroup>
-          </Panel.Collapse>
-        </Panel>
+        <PanelComponent
+          title="Forskrifter som er hjemlet i loven"
+          itemArray={this.state.regulations}
+          values={["title"]}
+        />
+        <PanelComponent
+          title="Relevante paragrafer i loven"
+          itemArray={this.state.subSections}
+          extra="§"
+          values={["number", "title"]}
+        />
       </div>
     );
   }

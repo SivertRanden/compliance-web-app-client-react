@@ -1,7 +1,12 @@
 import React from "react";
 import { Panel, ListGroup, ListGroupItem } from "react-bootstrap";
 
-function PanelComponent(props: { title: string; itemArray: any[]; value: string }) {
+function PanelComponent(props: {
+  title: string;
+  itemArray: any[];
+  extra?: string;
+  values: string[];
+}) {
   return (
     <Panel defaultExpanded>
       <Panel.Heading>
@@ -11,7 +16,11 @@ function PanelComponent(props: { title: string; itemArray: any[]; value: string 
       </Panel.Heading>
       <Panel.Collapse>
         <ListGroup>
-          {props.itemArray.map(i => <ListGroupItem key={i.id}>{i[props.value]}</ListGroupItem>)}
+          {props.itemArray.map(i => (
+            <ListGroupItem key={i.id}>
+              {props.extra} {props.values.map(v => i[v] + " ")}
+            </ListGroupItem>
+          ))}
         </ListGroup>
       </Panel.Collapse>
     </Panel>
