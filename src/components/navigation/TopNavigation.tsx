@@ -14,10 +14,10 @@ class TopNavigation extends React.Component {
           <Navbar.Collapse>
             <Nav>
               <LinkContainer to={"/laws"}>
-                <NavItem>Laws</NavItem>
+                <NavItem>Lover</NavItem>
               </LinkContainer>
               <LinkContainer to={"/themes"}>
-                <NavItem>themes</NavItem>
+                <NavItem>Temaer</NavItem>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>
