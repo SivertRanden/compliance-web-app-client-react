@@ -19,6 +19,9 @@ class TopNavigation extends React.Component {
               <LinkContainer to={"/themes"}>
                 <NavItem>Temaer</NavItem>
               </LinkContainer>
+              <LinkContainer to={"/categories"}>
+                <NavItem>Kategorier</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

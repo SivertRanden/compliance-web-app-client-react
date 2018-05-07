@@ -1,6 +1,7 @@
 import React from "react";
 const { ListGroup, ListGroupItem } = require("react-bootstrap");
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class CategoryList extends React.Component<{}, any> {
   constructor(props) {
@@ -20,7 +21,9 @@ class CategoryList extends React.Component<{}, any> {
         <ListGroup>
           {this.state.categories.map(cat => (
             <ListGroupItem key={cat.id}>
-              {cat.id}. {cat.title}
+              <Link to={"/categories/" + cat.id + "/answers"}>
+                {cat.id}. {cat.title}
+              </Link>
             </ListGroupItem>
           ))}
         </ListGroup>

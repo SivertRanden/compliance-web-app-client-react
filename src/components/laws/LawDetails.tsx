@@ -56,6 +56,7 @@ class LawDetails extends React.Component<RouteComponentProps, any> {
           title="Forskrifter som er hjemlet i loven"
           itemArray={this.state.regulations}
           values={["title"]}
+          link={"/regulations/"}
         />
         <PanelComponent
           title="Relevante paragrafer i loven"

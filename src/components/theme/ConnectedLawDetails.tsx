@@ -22,7 +22,7 @@ class ConnectedLawDetails extends React.Component<RouteComponentProps, any> {
     return (
       <div className="connectedlawdetails">
         <h3>
-          Forskrifter og paragrafer for temaet {this.state.theme.shortTitle} og loven
+          Forskrifter og paragrafer for temaet {this.state.theme.shortTitle} og loven{" "}
           {this.state.law.title}
         </h3>
         <PanelComponent title="Forskrifter" itemArray={this.state.regulations} values={["title"]} />
