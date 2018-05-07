@@ -6,6 +6,7 @@ import ThemeList from "../components/theme/ThemeList";
 import ThemeDetails from "../components/theme/ThemeDetails";
 import RegulationDetails from "./../components/regulations/RegulationDetails";
 import ConnectedLawDetails from "../components/theme/ConnectedLawDetails";
+import AnswerDetails from "../components/answers/AnswerDetails";
 
 // Declare all routes here
 function AppRoutes(props: any) {
@@ -17,6 +18,7 @@ function AppRoutes(props: any) {
       <Route exact path="/themes/:themeId" component={ThemeDetails} />
       <Route exect path="/themes/:themeId/laws/:lawId" component={ConnectedLawDetails} />
       <Route exact path="/regulations/:regulationId" component={RegulationDetails} />
+      <Route exact path="/answers/:answerId" component={AnswerDetails} />
     </div>
   );
 }
