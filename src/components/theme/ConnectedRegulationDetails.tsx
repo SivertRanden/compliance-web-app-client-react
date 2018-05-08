@@ -29,6 +29,7 @@ class ConnectedRegulationDetails extends React.Component<RouteComponentProps, an
           title="Hjemlet i følgende lover"
           itemArray={this.state.laws}
           values={["title", "dateCode"]}
+          link={"/laws/"}
         />
         <PanelComponent
           title="Paragrafer"
