@@ -6,6 +6,7 @@ import ThemeList from "../components/theme/ThemeList";
 import ThemeDetails from "../components/theme/ThemeDetails";
 import RegulationDetails from "./../components/regulations/RegulationDetails";
 import ConnectedLawDetails from "../components/theme/ConnectedLawDetails";
+import ConnectedRegulationDetails from "../components/theme/ConnectedRegulationDetails";
 import AnswerDetails from "../components/answers/AnswerDetails";
 import CategoryList from "../components/categories/CategoryList";
 import AnswersInCategory from "../components/categories/AnswersInCategory";
@@ -23,6 +24,11 @@ function AppRoutes(props: any) {
       <Route exact path="/themes" component={ThemeList} />
       <Route exact path="/themes/:themeId" component={ThemeDetails} />
       <Route exect path="/themes/:themeId/laws/:lawId" component={ConnectedLawDetails} />
+      <Route
+        exect
+        path="/themes/:themeId/regulations/:regulationId"
+        component={ConnectedRegulationDetails}
+      />
     </div>
   );
 }

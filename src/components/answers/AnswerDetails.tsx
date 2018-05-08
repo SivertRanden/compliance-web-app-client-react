@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { Table } from "react-bootstrap";
+import PanelComponent from "../UI-components/PanelComponent";
 
 class AnswerDetails extends React.Component<RouteComponentProps, any> {
   constructor(props) {
     super(props);
     this.state = {
-      answer: {}
+      answer: {},
+      themes: []
     };
   }
 
@@ -44,6 +46,12 @@ class AnswerDetails extends React.Component<RouteComponentProps, any> {
             </tr>
           </tbody>
         </Table>
+        <PanelComponent
+          title={"Tilknyttede tema"}
+          itemArray={this.state.themes}
+          values={["title"]}
+          link={"/themes/"}
+        />
       </div>
     );
   }
@@ -52,22 +60,30 @@ class AnswerDetails extends React.Component<RouteComponentProps, any> {
     const id = this.props.match.params.answerId;
     axios.get("/answers/" + id).then(res => {
       const answerFromServer = {
-        id: res.data.id_answer,
-        title: res.data.title,
-        sentToHearing: res.data.sent_to_hearing,
-        updated: res.data.updated,
-        approved: res.data.approved,
-        status: res.data.status,
-        jobTechCode: res.data.job_tech_code,
-        comment: res.data.comment,
-        group: res.data.group_type,
-        categoryName: res.data.category_title
+        id: res.data[0].id_answer,
+        title: res.data[0].title,
+        sentToHearing: res.data[0].sent_to_hearing,
+        updated: res.data[0].updated,
+        approved: res.data[0].approved,
+        status: res.data[0].status,
+        jobTechCode: res.data[0].job_tech_code,
+        comment: res.data[0].comment,
+        group: res.data[0].group_type,
+        categoryName: res.data[0].category_title
       };
+
+      const themesFromServer = res.data[1].map(t => {
+        return {
+          id: t.id_theme,
+          title: t.title
+        };
+      });
 
       console.log(answerFromServer);
 
       const newState = Object.assign({}, this.state, {
-        answer: answerFromServer
+        answer: answerFromServer,
+        themes: themesFromServer
       });
       this.setState(newState);
     });
