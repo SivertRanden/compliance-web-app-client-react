@@ -25,12 +25,18 @@ class ConnectedLawDetails extends React.Component<RouteComponentProps, any> {
           Forskrifter og paragrafer for temaet {this.state.theme.shortTitle} og loven{" "}
           {this.state.law.title}
         </h3>
-        <PanelComponent title="Forskrifter" itemArray={this.state.regulations} values={["title"]} />
+        <PanelComponent
+          title="Forskrifter"
+          itemArray={this.state.regulations}
+          values={["title"]}
+          expanded
+        />
         <PanelComponent
           title="Paragrafer"
           itemArray={this.state.subSections}
           extra="§"
           values={["number", "title"]}
+          expanded
         />
       </div>
     );

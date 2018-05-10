@@ -15,9 +15,10 @@ function PanelComponent(props: {
   values: string[];
   seperator?: string;
   link?: string;
+  expanded: boolean;
 }) {
   return (
-    <Panel defaultExpanded>
+    <Panel defaultExpanded={props.expanded}>
       <Panel.Heading>
         <Panel.Title toggle componentClass="h3">
           {props.title}

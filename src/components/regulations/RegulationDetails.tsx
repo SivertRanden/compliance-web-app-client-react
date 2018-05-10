@@ -29,6 +29,7 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
           itemArray={this.state.subSections}
           extra="§"
           values={["number", "title"]}
+          expanded
         />
       </div>
     );

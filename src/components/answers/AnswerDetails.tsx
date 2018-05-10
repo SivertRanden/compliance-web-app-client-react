@@ -51,6 +51,7 @@ class AnswerDetails extends React.Component<RouteComponentProps, any> {
           itemArray={this.state.themes}
           values={["title"]}
           link={"/themes/"}
+          expanded
         />
       </div>
     );

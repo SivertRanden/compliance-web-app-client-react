@@ -57,12 +57,14 @@ class LawDetails extends React.Component<RouteComponentProps, any> {
           itemArray={this.state.regulations}
           values={["title"]}
           link={"/regulations/"}
+          expanded
         />
         <PanelComponent
           title="Relevante paragrafer i loven"
           itemArray={this.state.subSections}
           extra="§"
           values={["number", "title"]}
+          expanded
         />
       </div>
     );
