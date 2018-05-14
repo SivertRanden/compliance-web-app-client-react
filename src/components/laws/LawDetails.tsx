@@ -64,6 +64,7 @@ class LawDetails extends React.Component<RouteComponentProps, any> {
           title="Relevante paragrafer i loven"
           itemArray={this.state.subSections}
           values={["type", "number", "title"]}
+          link={"/subsections/"}
           expanded
         />
       </div>

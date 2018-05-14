@@ -36,6 +36,7 @@ class ConnectedRegulationDetails extends React.Component<RouteComponentProps, an
           title="Paragrafer"
           itemArray={this.state.subSections}
           values={["type", "number", "title"]}
+          link={"/subsections/"}
           expanded
         />
       </div>

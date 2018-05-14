@@ -35,6 +35,7 @@ class ConnectedLawDetails extends React.Component<RouteComponentProps, any> {
           title="Paragrafer"
           itemArray={this.state.subSections}
           values={["type", "number", "title"]}
+          link={"/subsections/"}
           expanded
         />
       </div>

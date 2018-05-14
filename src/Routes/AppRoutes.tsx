@@ -10,6 +10,7 @@ import ConnectedRegulationDetails from "../components/theme/ConnectedRegulationD
 import AnswerDetails from "../components/answers/AnswerDetails";
 import CategoryList from "../components/categories/CategoryList";
 import AnswersInCategory from "../components/categories/AnswersInCategory";
+import SubSectionDetails from "../components/subsections/SubSectionDetails";
 
 // Declare all routes here
 function AppRoutes(props: any) {
@@ -21,6 +22,7 @@ function AppRoutes(props: any) {
       <Route exact path="/laws" component={LawList} />
       <Route exact path="/laws/:lawId" component={LawDetails} />
       <Route exact path="/regulations/:regulationId" component={RegulationDetails} />
+      <Route exact path="/subsections/:subSectionId" component={SubSectionDetails} />
       <Route exact path="/themes" component={ThemeList} />
       <Route exact path="/themes/:themeId" component={ThemeDetails} />
       <Route exect path="/themes/:themeId/laws/:lawId" component={ConnectedLawDetails} />
