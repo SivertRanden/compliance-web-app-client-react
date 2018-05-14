@@ -34,8 +34,7 @@ class ConnectedLawDetails extends React.Component<RouteComponentProps, any> {
         <PanelComponent
           title="Paragrafer"
           itemArray={this.state.subSections}
-          extra="§"
-          values={["number", "title"]}
+          values={["type", "number", "title"]}
           expanded
         />
       </div>
@@ -72,7 +71,8 @@ class ConnectedLawDetails extends React.Component<RouteComponentProps, any> {
           return {
             id: sub.id_sub_section,
             number: sub.number,
-            title: sub.title
+            title: sub.title,
+            type: sub.type == "Kapittel" ? "Hele kapittel" : "§"
           };
         });
 

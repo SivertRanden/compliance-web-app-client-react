@@ -132,7 +132,7 @@ class ThemeDetails extends React.Component<RouteComponentProps, any> {
     let id = 1;
     for (const a of answers) {
       if (!this.categories.some(c => c.title === a.categoryName)) {
-        this.categories.push({ title: a.categoryName, id: id, answers: Array<{}>() });
+        this.categories.push({ title: a.categoryName, id, answers: Array<{}>() });
         id++;
       }
     }

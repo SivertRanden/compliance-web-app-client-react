@@ -9,7 +9,8 @@
     "no-console": [false],
     "object-literal-sort-keys": false,
     "no-var-requires": false,
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "triple-equals": false
   },
   "defaultSeverity": "warning"
 }
