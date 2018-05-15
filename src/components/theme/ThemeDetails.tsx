@@ -29,6 +29,11 @@ class ThemeDetails extends React.Component<RouteComponentProps, any> {
         <h3>
           {this.state.theme.id}. {this.state.theme.title}
         </h3>
+        <h4>
+          <Link to={"/themes/" + this.state.theme.id + "/implementation"}>
+            Se implementasjon
+          </Link>
+        </h4>
         <PanelComponent
           title="Lover"
           itemArray={this.state.laws}

@@ -8,7 +8,7 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
     super(props);
     this.state = {
       regulation: {},
-      law: {},
+      laws: [],
       subSections: []
     };
   }
@@ -23,13 +23,13 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
         <h3>
           {this.state.regulation.title} - {this.state.regulation.dateCode}
         </h3>
-        {/* <PanelComponent
+        <PanelComponent
           title="Hjemlet i følgende lover"
           itemArray={this.state.laws}
           values={["title"]}
           link={"/laws/"}
           expanded
-        /> */}
+        />
         <PanelComponent
           title="Relevante paragrafer i forskriften"
           itemArray={this.state.subSections}
@@ -66,7 +66,7 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
             id: sub.id_sub_section,
             number: sub.number,
             title: sub.title,
-            type: sub.type
+            type: sub.type == "Kapittel" ? "Hele kapittel" : "§"
           };
         });
         const newState = Object.assign({}, this.state, {
@@ -75,6 +75,7 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
           subSections: subSectionsFromServer
         });
         this.setState(newState);
+        console.log(newState);
       })
       .catch(error => console.log(error));
   }
