@@ -22,8 +22,8 @@ class ConnectedRegulationDetails extends React.Component<RouteComponentProps, an
     return (
       <div className="connectedregulationdetails">
         <h3>
-          Lover og paragrafer for temaet {this.state.theme.shortTitle} og forskriften{" "}
-          {this.state.regulation.title}
+          Lover og paragrafer for temaet <b>{this.state.theme.shortTitle}</b> og forskriften{" "}
+          <b>{this.state.regulation.title}</b>
         </h3>
         <PanelComponent
           title="Hjemlet i følgende lover"

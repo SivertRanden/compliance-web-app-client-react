@@ -52,13 +52,13 @@ class ThemeList extends React.Component<{}, any> {
           <tbody>
             {this.state.themes.map(t => (
               <tr key={t.id}>
-                <td>
+                <td className="Table-align-left">
                   <Link to={"/themes/" + t.id}>
                     {t.id}. {t.title}
                   </Link>
                 </td>
                 <td>{t.nrOfDocuments}</td>
-                <td>{t.status}</td>
+                <td className="Table-align-left">{t.status}</td>
               </tr>
             ))}
           </tbody>

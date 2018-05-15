@@ -3,6 +3,7 @@ import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { Table } from "react-bootstrap";
 import PanelComponent from "../UI-components/PanelComponent";
+import "../../App.css";
 
 class AnswerDetails extends React.Component<RouteComponentProps, any> {
   constructor(props) {
@@ -41,8 +42,8 @@ class AnswerDetails extends React.Component<RouteComponentProps, any> {
               <td>{this.state.answer.sentToHearing ? "✓" : ""}</td>
               <td>{this.state.answer.updated ? "✓" : ""}</td>
               <td>{this.state.answer.approved ? "✓" : ""}</td>
-              <td>{this.state.answer.status}</td>
-              <td>{this.state.answer.comment}</td>
+              <td className="Table-align-left">{this.state.answer.status}</td>
+              <td className="Table-align-left">{this.state.answer.comment}</td>
             </tr>
           </tbody>
         </Table>

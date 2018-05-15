@@ -3,6 +3,7 @@ import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../../App.css";
 
 class AnswersInCategory extends React.Component<RouteComponentProps, any> {
   constructor(props) {
@@ -20,7 +21,7 @@ class AnswersInCategory extends React.Component<RouteComponentProps, any> {
   render() {
     return (
       <div className="answersincategory">
-        <h3>Svar i kategorien {this.state.category.title}</h3>
+        <h3>Svar i kategorien <b>{this.state.category.title}</b></h3>
         <Table bordered>
           <thead>
             <tr>
@@ -29,7 +30,7 @@ class AnswersInCategory extends React.Component<RouteComponentProps, any> {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="Table-align-left">
             {this.state.answers.map(a => (
               <tr key={a.id}>
                 <td>{a.group}</td>

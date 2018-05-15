@@ -18,6 +18,7 @@ class CategoryList extends React.Component<{}, any> {
   render() {
     return (
       <div className="categorylist">
+        <h3>Kategorier</h3>
         <ListGroup>
           {this.state.categories.map(cat => (
             <ListGroupItem key={cat.id}>

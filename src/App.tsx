@@ -3,8 +3,6 @@ import "./App.css";
 import { Col, Grid, Row } from "react-bootstrap";
 import { BrowserRouter as Router } from "react-router-dom";
 import TopNavigation from "./components/navigation/TopNavigation";
-// import LawList from "./components/laws/LawList";
-// import LawDetails from "./components/laws/LawDetails";
 import AppRoutes from "./Routes/AppRoutes";
 
 class App extends React.Component {
