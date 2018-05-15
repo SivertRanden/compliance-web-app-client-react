@@ -53,9 +53,10 @@ class ThemeDetails extends React.Component<RouteComponentProps, any> {
             {this.categories.map(cat => (
               <div key={cat.id}>
                 <h5>
-                  <b>{cat.title}</b>
+                  <b>
+                    <Link to={"/categories/" + cat.id + "/answers"}>{cat.title}</Link>
+                  </b>
                 </h5>
-
                 <ListGroup>
                   {cat.answers.map(a => (
                     <ListGroupItem key={a.id}>
@@ -98,7 +99,8 @@ class ThemeDetails extends React.Component<RouteComponentProps, any> {
           return {
             id: ans.id_answer,
             title: ans.title,
-            categoryName: ans.category_title
+            categoryName: ans.category_title,
+            categoryId: ans.category_id
           };
         });
         const implementationFromServer = {
@@ -129,11 +131,9 @@ class ThemeDetails extends React.Component<RouteComponentProps, any> {
   }
 
   makeCategories(answers) {
-    let id = 1;
     for (const a of answers) {
       if (!this.categories.some(c => c.title === a.categoryName)) {
-        this.categories.push({ title: a.categoryName, id, answers: Array<{}>() });
-        id++;
+        this.categories.push({ title: a.categoryName, id: a.categoryId, answers: Array<{}>() });
       }
     }
   }

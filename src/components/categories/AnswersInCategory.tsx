@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { RouteComponentProps } from "react-router";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class AnswersInCategory extends React.Component<RouteComponentProps, any> {
   constructor(props) {
@@ -32,7 +33,9 @@ class AnswersInCategory extends React.Component<RouteComponentProps, any> {
             {this.state.answers.map(a => (
               <tr key={a.id}>
                 <td>{a.group}</td>
-                <td>{a.title}</td>
+                <td>
+                  <Link to={"/answers/" + a.id}>{a.title}</Link>
+                </td>
                 <td>{a.status}</td>
               </tr>
             ))}

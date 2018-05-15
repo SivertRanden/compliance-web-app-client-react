@@ -23,7 +23,13 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
         <h3>
           {this.state.regulation.title} - {this.state.regulation.dateCode}
         </h3>
-        <h4>Hjemlet i {this.state.law.title}</h4>
+        {/* <PanelComponent
+          title="Hjemlet i følgende lover"
+          itemArray={this.state.laws}
+          values={["title"]}
+          link={"/laws/"}
+          expanded
+        /> */}
         <PanelComponent
           title="Relevante paragrafer i forskriften"
           itemArray={this.state.subSections}
@@ -42,16 +48,20 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
       .get("/regulations/" + id)
       .then(res => {
         const regulationFromServer = {
+          id: res.data[0].id_regulation,
           title: res.data[0].title,
           dateCode: res.data[0].date_code
         };
 
-        const lawFromServer = {
-          title: res.data[0].lawTitle,
-          dateCode: res.data[0].lawCode
-        };
+        const lawsFromServer = res.data[1].map(law => {
+          return {
+            id: law.id_law,
+            title: law.title,
+            dateCode: law.date_code
+          };
+        });
 
-        const subSectionsFromServer = res.data[1].map(sub => {
+        const subSectionsFromServer = res.data[2].map(sub => {
           return {
             id: sub.id_sub_section,
             number: sub.number,
@@ -61,7 +71,7 @@ class RegulationDetails extends React.Component<RouteComponentProps, any> {
         });
         const newState = Object.assign({}, this.state, {
           regulation: regulationFromServer,
-          law: lawFromServer,
+          laws: lawsFromServer,
           subSections: subSectionsFromServer
         });
         this.setState(newState);
